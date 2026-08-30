@@ -24,34 +24,44 @@ export const routes: Routes = [
   },
 
   {
-    path: 'medicines',
+    path: '',
     loadComponent: () =>
-      import('./features/medicines/medicines-list/medicines-list.component').then(
-        (m) => m.MedicinesListComponent,
+      import('./layout/main-layout/main-layout.component').then(
+        (m) => m.MainLayoutComponent,
       ),
-  },
 
-  {
-    path: 'medicines/add',
-    loadComponent: () =>
-      import('./features/medicines/medicine-add/medicine-add.component').then(
-        (m) => m.MedicineAddComponent,
-      ),
-  },
+    children: [
+      {
+        path: 'medicines',
+        loadComponent: () =>
+          import('./features/medicines/medicines-list/medicines-list.component').then(
+            (m) => m.MedicinesListComponent,
+          ),
+      },
 
-  {
-    path: 'medicines/:id/edit',
-    loadComponent: () =>
-      import('./features/medicines/medicine-edit/medicine-edit.component').then(
-        (m) => m.MedicineEditComponent,
-      ),
-  },
+      {
+        path: 'medicines/add',
+        loadComponent: () =>
+          import('./features/medicines/medicine-add/medicine-add.component').then(
+            (m) => m.MedicineAddComponent,
+          ),
+      },
 
-  {
-    path: 'medicines/:id',
-    loadComponent: () =>
-      import('./features/medicines/medicine-details/medicine-details.component').then(
-        (m) => m.MedicineDetailsComponent,
-      ),
+      {
+        path: 'medicines/:id/edit',
+        loadComponent: () =>
+          import('./features/medicines/medicine-edit/medicine-edit.component').then(
+            (m) => m.MedicineEditComponent,
+          ),
+      },
+
+      {
+        path: 'medicines/:id',
+        loadComponent: () =>
+          import('./features/medicines/medicine-details/medicine-details.component').then(
+            (m) => m.MedicineDetailsComponent,
+          ),
+      },
+    ],
   },
 ];
