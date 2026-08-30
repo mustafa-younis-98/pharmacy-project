@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -45,7 +46,7 @@ export class LoginComponent {
         this.successMessage = 'Login successful.';
 
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['medicines']);
         }, 1000);
       },
       error: (error) => {

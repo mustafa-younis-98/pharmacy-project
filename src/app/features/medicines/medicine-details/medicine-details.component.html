@@ -1,0 +1,182 @@
+<div class="container py-4">
+  @if (medicine) {
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h1 class="h3 mb-1">{{ medicine.name }}</h1>
+        <p class="text-muted mb-0">
+          Medicine details and inventory information
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="goBack()"
+      >
+        Back
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Basic Information</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="text-muted small">Medicine Name</div>
+            <div class="fw-semibold">{{ medicine.name }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Generic Name</div>
+            <div class="fw-semibold">{{ medicine.genericName }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Barcode</div>
+            <div class="fw-semibold">{{ medicine.barcode }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Category</div>
+            <div class="fw-semibold">{{ medicine.categoryName }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Supplier</div>
+            <div class="fw-semibold">{{ medicine.supplierName }}</div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Batch Number</div>
+            <div class="fw-semibold">{{ medicine.batchNumber }}</div>
+          </div>
+
+          <div class="col-12">
+            <div class="text-muted small">Description</div>
+            <div>{{ medicine.description }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Pricing & Inventory</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="text-muted small">Price</div>
+            <div class="fw-semibold">
+              {{ medicine.price | currency }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Cost Price</div>
+            <div class="fw-semibold">
+              {{ medicine.costPrice | currency }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Stock Quantity</div>
+            <div class="fw-semibold">
+              {{ medicine.stockQuantity }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Reorder Level</div>
+            <div class="fw-semibold">
+              {{ medicine.reorderLevel }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Expiry Date</div>
+            <div class="fw-semibold">
+              {{ medicine.expiryDate | date }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Batch Number</div>
+            <div class="fw-semibold">
+              {{ medicine.batchNumber }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Status & Additional Information</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="text-muted small">Medicine Status</div>
+
+            @if (medicine.isActive) {
+              <span class="badge text-bg-success">Active</span>
+            } @else {
+              <span class="badge text-bg-secondary">Inactive</span>
+            }
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Stock Status</div>
+
+            @if (medicine.isLowStock) {
+              <span class="badge text-bg-warning">Low Stock</span>
+            } @else {
+              <span class="badge text-bg-success">In Stock</span>
+            }
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Expiry Status</div>
+
+            @if (medicine.isExpired) {
+              <span class="badge text-bg-danger">Expired</span>
+            } @else {
+              <span class="badge text-bg-success">Not Expired</span>
+            }
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Prescription</div>
+
+            @if (medicine.requiresPrescription) {
+              <span class="badge text-bg-primary"> Prescription Required </span>
+            } @else {
+              <span class="badge text-bg-secondary">
+                No Prescription Required
+              </span>
+            }
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Created At</div>
+            <div class="fw-semibold">
+              {{ medicine.createdAt | date }}
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-muted small">Last Updated</div>
+            <div class="fw-semibold">
+              {{ medicine.updatedAt | date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
