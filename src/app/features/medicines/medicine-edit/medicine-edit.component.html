@@ -1,0 +1,206 @@
+<div class="container py-4">
+  <div class="mb-4">
+    <h1 class="h3 mb-1">Edit Medicine</h1>
+    <p class="text-muted mb-0">Update the medicine information</p>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <!-- Basic Information -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Basic Information</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Medicine Name</label>
+
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="genericName" class="form-label">Generic Name</label>
+
+            <input
+              id="genericName"
+              type="text"
+              class="form-control"
+              formControlName="genericName"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="barcode" class="form-label">Barcode</label>
+
+            <input
+              id="barcode"
+              type="text"
+              class="form-control"
+              formControlName="barcode"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="batchNumber" class="form-label">Batch Number</label>
+
+            <input
+              id="batchNumber"
+              type="text"
+              class="form-control"
+              formControlName="batchNumber"
+            />
+          </div>
+
+          <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+
+            <textarea
+              id="description"
+              class="form-control"
+              rows="4"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing & Inventory -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Pricing & Inventory</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="price" class="form-label">Price</label>
+
+            <input
+              id="price"
+              type="number"
+              class="form-control"
+              formControlName="price"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="costPrice" class="form-label">Cost Price</label>
+
+            <input
+              id="costPrice"
+              type="number"
+              class="form-control"
+              formControlName="costPrice"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="stockQuantity" class="form-label">
+              Stock Quantity
+            </label>
+
+            <input
+              id="stockQuantity"
+              type="number"
+              class="form-control"
+              formControlName="stockQuantity"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="reorderLevel" class="form-label"> Reorder Level </label>
+
+            <input
+              id="reorderLevel"
+              type="number"
+              class="form-control"
+              formControlName="reorderLevel"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="expiryDate" class="form-label">Expiry Date</label>
+
+            <input
+              id="expiryDate"
+              type="date"
+              class="form-control"
+              formControlName="expiryDate"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Status -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Status</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="form-check">
+              <input
+                id="requiresPrescription"
+                type="checkbox"
+                class="form-check-input"
+                formControlName="requiresPrescription"
+              />
+
+              <label for="requiresPrescription" class="form-check-label">
+                Requires Prescription
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-check">
+              <input
+                id="isActive"
+                type="checkbox"
+                class="form-check-input"
+                formControlName="isActive"
+              />
+
+              <label for="isActive" class="form-check-label"> Active </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="onCancel()"
+        [disabled]="isLoading"
+      >
+        Cancel
+      </button>
+
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        @if (isLoading) {
+          Saving...
+        } @else {
+          Save Changes
+        }
+      </button>
+    </div>
+  </form>
+</div>
