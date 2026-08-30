@@ -1,0 +1,72 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end vh-100">
+  >
+  <!-- Logo -->
+  <div class="mb-4 px-2">
+    <h4 class="fw-bold text-primary mb-1">Pharmacy</h4>
+    <small class="text-muted">Management System</small>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav nav-pills flex-column gap-2">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      class="nav-link text-dark"
+    >
+      Dashboard
+    </a>
+
+    <a
+      routerLink="/medicines"
+      routerLinkActive="active"
+      class="nav-link text-dark"
+    >
+      Medicines
+    </a>
+  </nav>
+
+  <!-- Logout -->
+  <div class="mt-auto pt-3 border-top">
+    <button
+      type="button"
+      class="btn btn-outline-danger w-100"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</div>
+
+<!-- Logout Confirmation -->
+@if (showLogoutConfirmation) {
+  <div
+    class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+    style="background-color: rgba(0, 0, 0, 0.5); z-index: 1050"
+  >
+    <div class="card shadow" style="width: 400px">
+      <div class="card-body p-4">
+        <h5 class="card-title mb-3">Confirm Logout</h5>
+
+        <p class="card-text text-muted">Are you sure you want to logout?</p>
+
+        <div class="d-flex justify-content-end gap-2">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="cancelLogout()"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="confirmLogout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
