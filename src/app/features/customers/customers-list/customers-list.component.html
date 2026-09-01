@@ -1,0 +1,102 @@
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 mb-1">Customers</h1>
+
+      <p class="text-muted mb-0">Manage and view your pharmacy customers</p>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="getCustomers()"
+      [disabled]="isLoading"
+    >
+      @if (isLoading) {
+        Loading...
+      } @else {
+        Refresh
+      }
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Loading -->
+  @if (isLoading) {
+    <div class="text-center py-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+      <p class="text-muted mt-3 mb-0">Loading customers...</p>
+    </div>
+  }
+
+  <!-- Customers Table -->
+  @else if (customers.length > 0) {
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th class="ps-4">Full Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Notes</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (customer of customers; track customer.id) {
+                <tr>
+                  <td class="ps-4 fw-medium">
+                    {{ customer.fullName }}
+                  </td>
+
+                  <td>
+                    {{ customer.phone }}
+                  </td>
+
+                  <td>
+                    {{ customer.email }}
+                  </td>
+
+                  <td>
+                    {{ customer.address }}
+                  </td>
+
+                  <td>
+                    {{ customer.notes }}
+                  </td>
+
+                  <td>
+                    {{ customer.createdAt | date: "mediumDate" }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @else {
+    <div class="text-center py-5">
+      <h5 class="mb-2">No Customers Found</h5>
+
+      <p class="text-muted mb-0">There are no customers to display.</p>
+    </div>
+  }
+</div>

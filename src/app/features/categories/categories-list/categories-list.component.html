@@ -1,0 +1,102 @@
+<div class="container-fluid py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 mb-1">Categories</h1>
+      <p class="text-muted mb-0">Manage and organize medicine categories</p>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-3">
+    <div class="col-12 col-md-8">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search categories..."
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearch()"
+      />
+    </div>
+
+    <div class="col-12 col-md-4">
+      <select
+        class="form-select"
+        [(ngModel)]="sortOption"
+        (ngModelChange)="onSortChange()"
+      >
+        <option value="">Default Order</option>
+        <option value="name-asc">Name: A to Z</option>
+        <option value="name-desc">Name: Z to A</option>
+      </select>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (isLoading) {
+    <div class="text-center py-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+      <p class="text-muted mt-3 mb-0">Loading categories...</p>
+    </div>
+  } @else {
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">Category Name</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (category of categories; track category.id) {
+            <tr>
+              <td>{{ category.name }}</td>
+              <td>{{ category.description }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (categories.length === 0) {
+      <div class="text-center py-5 text-muted">No categories found.</div>
+    }
+
+    @if (total > 0) {
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <span class="text-muted"> Total: {{ total }} categories </span>
+
+        <div class="d-flex align-items-center gap-3">
+          <span class="text-muted"> Page {{ page }} of {{ totalPages }} </span>
+
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              [disabled]="page === 1"
+              (click)="previousPage()"
+            >
+              Previous
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              [disabled]="page === totalPages"
+              (click)="nextPage()"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>
