@@ -1,5 +1,4 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end vh-100">
-  >
   <!-- Logo -->
   <div class="mb-4 px-2">
     <h4 class="fw-bold text-primary mb-1">Pharmacy</h4>
@@ -8,6 +7,15 @@
 
   <!-- Navigation -->
   <nav class="nav nav-pills flex-column gap-2">
+    <!-- Medicines -->
+    <a
+      routerLink="/medicines"
+      routerLinkActive="active"
+      class="nav-link text-dark"
+    >
+      Medicines
+    </a>
+    <!-- Dashboard -->
     <a
       routerLink="/dashboard"
       routerLinkActive="active"
@@ -16,12 +24,31 @@
       Dashboard
     </a>
 
+    <!-- Categories -->
     <a
-      routerLink="/medicines"
+      routerLink="/categories"
       routerLinkActive="active"
       class="nav-link text-dark"
     >
-      Medicines
+      Categories
+    </a>
+
+    <!-- Customers -->
+    <a
+      routerLink="/customers"
+      routerLinkActive="active"
+      class="nav-link text-dark"
+    >
+      Customers
+    </a>
+
+    <!-- Suppliers -->
+    <a
+      routerLink="/suppliers"
+      routerLinkActive="active"
+      class="nav-link text-dark"
+    >
+      Suppliers
     </a>
   </nav>
 
@@ -50,6 +77,7 @@
         <p class="card-text text-muted">Are you sure you want to logout?</p>
 
         <div class="d-flex justify-content-end gap-2">
+          <!-- Cancel -->
           <button
             type="button"
             class="btn btn-outline-secondary"
@@ -58,6 +86,7 @@
             Cancel
           </button>
 
+          <!-- Confirm Logout -->
           <button
             type="button"
             class="btn btn-danger"

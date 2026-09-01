@@ -32,13 +32,40 @@ export const routes: Routes = [
 
     children: [
       {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent,
+          ),
+      },
+      {
         path: 'medicines',
         loadComponent: () =>
           import('./features/medicines/medicines-list/medicines-list.component').then(
             (m) => m.MedicinesListComponent,
           ),
       },
-
+      {
+        path: 'categories',
+        loadComponent: () =>
+          import('./features/categories/categories-list/categories-list.component').then(
+            (m) => m.CategoriesListComponent,
+          ),
+      },
+      {
+        path: 'customers',
+        loadComponent: () =>
+          import('./features/customers/customers-list/customers-list.component').then(
+            (m) => m.CustomersListComponent,
+          ),
+      },
+      {
+        path: 'suppliers',
+        loadComponent: () =>
+          import('./features/suppliers/suppliers-list/suppliers-list.component').then(
+            (m) => m.SuppliersListComponent,
+          ),
+      },
       {
         path: 'medicines/add',
         loadComponent: () =>
